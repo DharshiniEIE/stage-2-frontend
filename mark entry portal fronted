@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Bannari Amman College</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-image: url("slider-03-1.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="page1">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="email">Email ID:</label>
+      <input type="text" id="email" name="email" placeholder="Enter your email ID" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <div id="loginError" class="error">Invalid email or password format.</div>
+      <button type="button" id="toBatchDept">Next</button>
+    </form>
+  </div>
+
+  <div class="container" id="page2" style="display: none;">
+    <h2>Select Batch and Department</h2>
+    <form id="batchDeptForm">
+      <label for="batch">Batch:</label>
+      <select id="batch" name="batch">
+        <option value="">Select Batch</option>
+    
+        <script>
+          for(let year = 2015; year <= 2028; year++) {
+            document.write(`<option value="${year}">${year}</option>`);
+          }
+        </script>
+      </select>
+      <label for="department">Department:</label>
+      <select id="department" name="department">
+        <option value="">Select Department</option>
+        <option value="AG">Agricultural Engineering</option>
+        <option value="AIDS">Artificial Intelligence and Data Science</option>
+        <option value="AIML">Artificial Intelligence and Machine Learning</option>
+        <option value="BM">Bio Medical Engineering</option>
+        <option value="BT">Bio Technology</option>
+        <option value="CE">Civil Engineering</option>
+        <option value="CD">Computer Science and Design</option>
+        <option value="CSE">Computer Science and Engineering</option>
+        <option value="CSBS">Computer Science and Business System</option>
+        <option value="CT">Computer Technology</option>
+        <option value="ECE">Electronics and Communication Engineering</option>
+        <option value="EEE">Electrical and Electronics Engineering</option>
+        <option value="EIE">Electrical and Instrumentation Engineering</option>
+        <option value="FT">Fashion Technology</option>
+        <option value="FD">Food Technology</option>
+        <option value="IT">Information Technology</option>
+        <option value="ISE">Information Science and Engineering</option>
+        <option value="ME">Mechanical Engineering</option>
+        <option value="MC">Mechatronics Engineering</option>
+        <option value="TT">Textile Technology</option>
+      </select>
+      <button type="button" id="toSemester">Next</button>
+    </form>
+  </div>
+
+  <div class="container" id="page3" style="display: none;">
+    <h2>Select Semester</h2>
+    <form id="semesterForm">
+      <label for="semester">Semester:</label>
+      <select id="semester" name="semester">
+        <option value="">Select Semester</option>
+        <script>
+          for(let sem = 1; sem <= 8; sem++) {
+            document.write(`<option value="${sem}">Semester ${sem}</option>`);
+          }
+        </script>
+      </select>
+      <button type="button" id="toRole">Next</button>
+    </form>
+  </div>
+
+  <div class="container" id="page4" style="display: none;">
+    <h2>Choose Role</h2>
+    <form id="roleForm">
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="">Select Role</option>
+        <option value="faculty">Faculty</option>
+        <option value="student">Student</option>
+      </select>
+      <div id="facultyDetails" style="display: none;">
+        <label for="facultyId">Faculty ID:</label>
+        <input type="text" id="facultyId" placeholder="Enter your Faculty ID">
+        <label for="facultyPassword">Password:</label>
+        <input type="password" id="facultyPassword" placeholder="Enter your Password">
+      </div>
+      <button type="button" id="toSubject">Next</button>
+    </form>
+  </div>
+
+  <div class="container" id="page5" style="display: none;">
+    <h2>Choose Subject</h2>
+    <form id="subjectForm">
+      <label for="subject">Subject Code:</label>
+      <select id="subject" name="subject">
+        <option value="">Select Subject</option>
+        <option value="22EI501">22EI501</option>
+        <option value="22EI502">22EI502</option>
+        <option value="22EI503">22EI503</option>
+        <option value="22EI504">22EI504</option>
+        <option value="22EI505">22EI505</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Navigation logic between pages
+    document.getElementById('toBatchDept').addEventListener('click', function() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    });
+
+    document.getElementById('toSemester').addEventListener('click', function() {
+      document.getElementById('page2').style.display = 'none';
+      document.getElementById('page3').style.display = 'block';
+    });
+
+    document.getElementById('toRole').addEventListener('click', function() {
+      document.getElementById('page3').style.display = 'none';
+      document.getElementById('page4').style.display = 'block';
+    });
+
+    document.getElementById('role').addEventListener('change', function() {
+      const role = document.getElementById('role').value;
+      document.getElementById('facultyDetails').style.display = role === 'faculty' ? 'block' : 'none';
+    });
+
+    document.getElementById('toSubject').addEventListener('click', function() {
+      document.getElementById('page4').style.display = 'none';
+      document.getElementById('page5').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
